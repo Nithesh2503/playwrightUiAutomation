@@ -12,12 +12,14 @@ test("Add to WishList", async ({ page }) => {
 
   const samsungProduct = page.getByRole("link", {
     name: testData.sku,
-    exact: true,
-  });
+    
+  }).nth(0);
   await samsungProduct.click();
 
-  const wishListMainButton = page.locator("#wishListMainButton");
+  const wishListMainButton = page.getByRole('button', { name: 'Add to Wish List' })
   await wishListMainButton.click();
+  await page.pause()
+
   const viewWishListBtm = page.getByRole("link", { name: "View Your List" });
   await viewWishListBtm.click();
   

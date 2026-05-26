@@ -1,7 +1,7 @@
 import test from "@playwright/test";
 import testData from "../lib/testData/testData.json";
 
-test.use({ storageState: "auth.json" });
+// test.use({ storageState: "auth.json" });
 test(`SignIn Amazon`, async ({ page }) => {
   console.log(testData.products, process.env.URL);
   await page.goto(process.env.URL!);
@@ -21,6 +21,6 @@ test(`SignIn Amazon`, async ({ page }) => {
   await pwdInput.fill(process.env.pwd!);
   const submitSignInBtn = page.locator("#signInSubmit");
   await submitSignInBtn.click();
-  // await page.context().storageState({path:'auth.json'})
+  await page.context().storageState({path:'auth.json'})
   await page.pause();
 });
